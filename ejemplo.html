@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>😂Ejemplo CSS Variables + JS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Betania+Patmos&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --color-primario: #4f46e5;
+      --color-hover: #4338ca;
+      --color-texto: #ffffff;
+      --padding: 12px 24px;
+      --radio: 8px;
+    }
+
+    body {
+      font-family: "Betania Patmos", cursive;
+  font-weight: 400;
+  font-style: normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: aqua;
+    }
+
+    .boton-alerta {
+      background-color: var(--color-primario);
+      color: var(--color-texto);
+      padding: var(--padding);
+      border: none;
+      border-radius: var(--radio);
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .boton-alerta:hover {
+      background-color: var(--color-hover);
+      font-size: 18px;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      color: var(--color-primario);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .campo {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: var(--radio);
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: var(--color-primario);
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Formulario de Registro</h2>
+    <form id="formularioRegistro">
+      <div class="campo">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+      <div class="campo">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="campo">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="campo">
+        <label for="confirmarPassword">Confirmar Contraseña:</label>
+        <input type="password" id="confirmarPassword" name="confirmarPassword" required>
+      </div>
+      <div class="campo">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+      </div>
+      <button type="submit" class="boton-alerta">Registrarse</button>
+    </form>
+  </div>
+  <script>
+    const formulario = document.getElementById('formularioRegistro');
+    
+    formulario.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmarPassword = document.getElementById('confirmarPassword').value;
+      const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+      
+      if (password !== confirmarPassword) {
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+      
+      const datosRegistro = {
+        nombre,
+        email,
+        fechaNacimiento
+      };
+      
+      console.log('Datos de registro:', datosRegistro);
+      alert('¡Registro exitoso! Bienvenido/a ' + nombre);
+      formulario.reset();
+    });
+  </script>
+</body>
+</html>
